@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Weather from "./Weather.jsx";
+import StateParks from './StateParks.jsx';
 
 class Search extends React.Component {
 	constructor(props) {
@@ -29,7 +30,6 @@ class Search extends React.Component {
 				error: null
 			});
 		} catch (err) {
-			console.log('Hello this is the error!', err)
 			this.setState({ weather: null, campsites: null, chatGPT: null, error: err.response.data.error });
 		}
 	};
@@ -47,7 +47,10 @@ class Search extends React.Component {
 					<button type="submit">Search</button>
 				</form>
 				{this.state.error && <div>Error: {this.state.error}</div>}
-				{this.state.weather && <Weather forecast={this.state.weather}/>}
+				<div className='bill-board'>
+				{this.state.weather && <Weather chatGPT={this.state.chatGPT} forecast={this.state.weather}/>}
+				</div>
+				{this.state.campsites && <StateParks campsites={this.state.campsites}/>}
 			</div>
 		);
 	}

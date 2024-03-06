@@ -1,42 +1,71 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+import Figure from "react-bootstrap/Figure";
+import Carousel from 'react-bootstrap/Carousel';
+import ParkModal from "./ParkModal.jsx";
 
 class StateParks extends React.Component {
-	render(){
+	constructor(props) {
+		super(props);
+		this.state={
+			showModal: false,
+			activeCampsite: null
+		}
+	}
 
-		let campSites = this.props.campsites.filter(campsite => campsite.images.length !== 0 && campsite.description !== '');
+	toggleModal = (campsite) => {
+		this.setState((previousState) => {
+			return {
+				showModal: !previousState.showModal,
+				activeCampsite: campsite
+			}
+		})
+	}
+	render() {
+
+	let campSites = this.props.campsites.filter(campsite => campsite.images.length !== 0 && campsite.description !== '');
+
+		function chunkArray(array, chunkSize) {
+			let results = [];
+			while (array.length) {
+				results.push(array.splice(0, chunkSize));
+			}
+			return results;
+		}
+
+		let chunks = chunkArray(campSites, 10);
 
 		const handleButtonClick = (url) => {
 			window.open(url, '_blank');
 		};
 
-		return(
-			<Container>
-				<Row>
-					{campSites.map((campsite, id) => {
-						return <Col key={id}>
-							<Card bg='' style={{ width: '18rem' }} text='dark'>
-								<Card.Img variant="top" src={campsite.images[0].url} />
-								<Card.Body>
-									<Card.Title>{campsite.tite}</Card.Title>
-									<Card.Text>
-										{campsite.description}
-									</Card.Text>
-									<Card.Text>
-										{campsite.reservationInfo}
-									</Card.Text>
-									{campsite.reservationUrl !== '' ? <Button variant="primary" onClick={() => handleButtonClick(campsite.reservationUrl)}>Reserve a Spot now!</Button> : null}
-								</Card.Body>
-							</Card>
-						</Col>
-					})}
-				</Row>
-			</Container>
-		)
+		return (
+			<div>
+				<Carousel className='state-parks-carousel' interval={30000}>
+					{chunks.map((chunk, index) => (
+						<Carousel.Item key={index}>
+							<Row id='parksRow'>
+								{chunk.map((campsite, id) => (
+									<Col className='parkImageContainer' key={id}>
+										<Figure>
+											<Figure.Image
+												className='parkImage'
+												onClick={() => this.toggleModal(campsite)}
+												src={campsite.images[0].url}
+											/>
+											<Figure.Caption className='parkImageTitle'>
+												{campsite.title}
+											</Figure.Caption>
+										</Figure>
+										<ParkModal key={id} campsite={this.state.activeCampsite} show={this.state.showModal} toggleModal={this.toggleModal}/>									</Col>
+								))}
+							</Row>
+						</Carousel.Item>
+					))}
+				</Carousel>
+			</div>
+		);
 	}
 }
 

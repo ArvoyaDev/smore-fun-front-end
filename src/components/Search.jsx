@@ -47,7 +47,9 @@ class Search extends React.Component {
 					<button type="submit">Search</button>
 				</form>
 				{this.state.error && <div>Error: {this.state.error}</div>}
-				{this.state.weather && <Weather forecast={this.state.weather}/>}
+				<div className='bill-board'>
+				{this.state.weather && <Weather chatGPT={this.state.chatGPT} forecast={this.state.weather}/>}
+				</div>
 				{this.state.campsites && <StateParks campsites={this.state.campsites}/>}
 			</div>
 		);

@@ -8,7 +8,85 @@
 
 
 Body {
-    background: url("../public/assests/sunshine.webp") no-repeat center center fixed;
+    background: url("../public/assests/backgroundInfo.png") no-repeat center center fixed;
     background-size: cover;
     font-family: "Notica Text", serif !important;
+}
+
+.LogoHolder {
+    display: flex;
+    justify-content: center;
+}
+
+.Logo {
+    margin-top: 25px;
+    max-width: 400px;
+}
+
+.weatherHolder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 500px;
+    margin-top: 100px;
+    perspective: 1000px; /* Set the perspective */
+}
+
+
+#parksContainer {
+    display: inline-block;
+  }
+#parksRow {
+    display: flex;
+    justify-content: center;
+}
+.parkImageContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url("../public/assests/SVG/ParkSign.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: max-content;
+    margin: 15px;
+}
+.parkImageTitle{
+    font-family: 'Lato', sans-serif;
+}
+
+.parkImage {
+    max-width: 71px;
+    max-height: 71px;
+}
+
+.state-parks-carousel{
+    postion: fixed;
+    bottom: 0;
+    width: 100%
+}
+
+.carousel-item {
+    padding: 0 !important;
+}
+
+.custom-carousel .carousel-indicators {
+    position: absolute;
+    bottom: 10%;
+}
+
+.modal-content{
+    background-image: url("../public/assests/SVG/Modal-Background.svg");
+    background-size: cover; /* This will scale the image to be as large as possible */
+    background-repeat: no-repeat;
+    background-position: center; /* This will center the background image */
+    padding: 15%;
+}
+
+.modal-body {
+    max-height: 512px; /* This will set the maximum height of the modal to 512px */
+    overflow-y: auto;
+}
+
+.park-modal-backdrop{
+    background-color: rgba(0, 0, 0, 0.01) !important;
 }

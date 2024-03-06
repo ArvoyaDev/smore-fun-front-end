@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import logo from '../../public/assests/SVG/Logo_1.svg';
+
 
 class Header extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1 >HELLO!!!!!!!!</h1>
+				<div className='LogoHolder'>
+				<img className='Logo' src={logo}/>
+				</div>
 				<div >
 					<Link to="/" >Home</Link>
 				</div>

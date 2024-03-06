@@ -23,7 +23,6 @@ function App() {
       <Router>
         <Header/>
            <Routes>
-
         <Route
           exact path='/'
           element={<Search/>}

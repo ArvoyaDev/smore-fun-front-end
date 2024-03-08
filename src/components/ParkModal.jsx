@@ -2,7 +2,6 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Carousel from "react-bootstrap/Carousel";
 import {CarouselItem} from "react-bootstrap";
-import backdrop from "bootstrap/js/src/util/backdrop.js";
 
 class ParkModal extends React.Component {
 

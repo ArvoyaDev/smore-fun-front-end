@@ -26,38 +26,42 @@ Body {
 .weatherHolder {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     max-width: 500px;
     margin-top: 100px;
     perspective: 1000px; /* Set the perspective */
 }
 
 
-#parksContainer {
-    display: inline-block;
-  }
 #parksRow {
     display: flex;
     justify-content: center;
 }
 .parkImageContainer{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-image: url("../public/assests/SVG/ParkSign.svg");
-    background-position: center;
+    background-image: url("../public/assests/SVG/Modal-Background.svg");
     background-repeat: no-repeat;
-    height: max-content;
-    margin: 15px;
+    background-position: center; /* This will center the background image */
+    height: 200px;
 }
+
+.parkSign {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    margin: 20%;
+}
+
 .parkImageTitle{
     font-family: 'Lato', sans-serif;
+    display: flex;
 }
 
 .parkImage {
-    max-width: 71px;
-    max-height: 71px;
+    margin-top: 20px;
+    max-height: 95px;
 }
+
+
 
 .state-parks-carousel{
     postion: fixed;
@@ -78,6 +82,7 @@ Body {
     background-image: url("../public/assests/SVG/Modal-Background.svg");
     background-size: cover; /* This will scale the image to be as large as possible */
     background-repeat: no-repeat;
+    height: 725px;
     background-position: center; /* This will center the background image */
     padding: 15%;
 }

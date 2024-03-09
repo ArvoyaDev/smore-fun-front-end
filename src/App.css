@@ -31,6 +31,12 @@ Body {
     overflow: hidden;
 }
 
+.home-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .LogoHolder {
     display: flex;
     justify-content: center;
@@ -44,10 +50,10 @@ Body {
 .weatherHolder {
     display: flex;
     flex-direction: column;
+    background: white;
     justify-content: space-around;
     max-width: 500px;
     margin-top: 100px;
-    perspective: 1000px; /* Set the perspective */
 }
 
 .boards {
@@ -58,16 +64,25 @@ Body {
 
 .alertsBoard{
     max-width: 500px;
-    max-height: 500px;
+    max-height: 400px;
     overflow: hidden;
 }
 
+.alertBoard {
+    max-height: 400px; /* Adjust this value as needed */
+    overflow-y: auto;
+}
 
 #parksRow {
+    position: fixed;
+    bottom: 75px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
-    margin-top: 25px;
 }
+
+
 .parkImageContainer{
     background-image: url("../public/assests/SVG/Modal-Background.svg");
     background-repeat: no-repeat;
@@ -97,11 +112,7 @@ Body {
 
 
 
-.state-parks-carousel{
-    postion: fixed;
-    bottom: 0;
-    width: 100%
-}
+
 
 .state-parks-carousel .carousel-control-prev{
     width: 35px !important;
@@ -128,6 +139,12 @@ Body {
     padding: 0 !important;
 }
 
+.custom-carousel img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
 .custom-carousel .carousel-indicators {
     position: absolute;
     bottom: 10%;
@@ -137,13 +154,14 @@ Body {
     background-image: url("../public/assests/SVG/Modal-Background.svg");
     background-size: cover; /* This will scale the image to be as large as possible */
     background-repeat: no-repeat;
-    height: 725px;
+    height: 725px; /* Set a fixed height for the modal */
+    width: 500px; /* Set a fixed width for the modal */
     background-position: center; /* This will center the background image */
     padding: 15%;
 }
 
 .modal-body {
-    max-height: 512px; /* This will set the maximum height of the modal to 512px */
+    max-height: none;
     overflow-y: auto;
 }
 

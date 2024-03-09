@@ -8,12 +8,9 @@ import {
 } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Search from "./components/Search"
+import Notebook from "./components/Notebook.jsx";
 
 
-
-function Notebook() {
-     return null;
-}
 
 function App() {
   const [count, setCount] = useState(0)

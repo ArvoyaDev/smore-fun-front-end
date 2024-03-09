@@ -1,16 +1,13 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Carousel from "react-bootstrap/Carousel";
-import {CarouselItem} from "react-bootstrap";
 
 class ParkModal extends React.Component {
-
 	render() {
 		const { campsite } = this.props;
 		if (!campsite) {
-			return null; // or some fallback UI
+			return null;
 		}
-		return(
+		return (
 			<>
 				<Modal
 					className="park-modal"
@@ -23,21 +20,18 @@ class ParkModal extends React.Component {
 						<Modal.Title>{this.props.campsite.title}</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						<Carousel slide={false} className="custom-carousel" controls={campsite.images.length > 1} indicators={campsite.images.length > 1} interval={7000}>
-							{campsite.images.map((image, id) => {
-								return (
-									<CarouselItem key={id}>
-										<img src={image.url} style={{width: '316px'}} alt={image.altText}/>
-										<br/>
-										<h2>{image.caption}</h2>
-									</CarouselItem>
-								);
-							})}
-						</Carousel>
+						<div className="custom-carousel">
+							<img
+								className="d-block w-100"
+								src={campsite.images[0].url}
+								alt={campsite.images[0].altText}
+							/>
+							<br/>
+							<h2>{campsite.images[0].caption}</h2>
+						</div>
 						<br/>
 						<p>
-						{this.props.campsite.description}
-							{this.props.campsite.parkCode}
+							{this.props.campsite.description}
 						</p>
 						<br/>
 						<p>
@@ -50,7 +44,6 @@ class ParkModal extends React.Component {
 				</Modal>
 			</>
 		)
-
 	}
 }
 

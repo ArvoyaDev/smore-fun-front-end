@@ -41,23 +41,23 @@ class StateParks extends React.Component {
 		};
 
 		return (
-			<div>
+			<div id='parksRow'>
 				<Carousel className='state-parks-carousel' interval={30000}>
 					{chunks.map((chunk, index) => (
 						<Carousel.Item key={index}>
-							<Row id='parksRow'>
+							<Row>
 								{chunk.map((campsite, id) => (
 									<Col className='parkImageContainer' key={id}>
-											<Figure className='parkSign'>
-													<Figure.Caption className='parkImageTitle'>
-														{campsite.title}
-													</Figure.Caption>
-													<Figure.Image
-														className='parkImage'
-														onClick={() => this.toggleModal(campsite)}
-														src={campsite.images[0].url}
-													/>
-											</Figure>
+										<Figure className='parkSign'>
+											<Figure.Caption className='parkImageTitle'>
+												{campsite.title}
+											</Figure.Caption>
+											<Figure.Image
+												className='parkImage'
+												onClick={() => this.toggleModal(campsite)}
+												src={campsite.images[0].url}
+											/>
+										</Figure>
 										<ParkModal key={id} campsite={this.state.activeCampsite} show={this.state.showModal} toggleModal={this.toggleModal}/>
 									</Col>
 								))}

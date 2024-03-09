@@ -4,10 +4,11 @@ import {Accordion} from "react-bootstrap";
 class Alerts extends React.Component {
 	render() {
 		return(
-		<div className='alertBoard'>
-			<Accordion defaultActiveKey='0'>
+		<div >
+			<h1>Alerts</h1>
+			<Accordion className='alertBoard' defaultActiveKey='0'>
 				{this.props.alerts.map( (alert, id) => {
-					return <Accordion.Item eventKey={id}>
+					return <Accordion.Item key={id} eventKey={id}>
 						<Accordion.Header>{alert.title}</Accordion.Header>
 						<Accordion.Body>
 							<p>{alert.description}</p>

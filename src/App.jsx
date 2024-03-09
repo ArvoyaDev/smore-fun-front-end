@@ -19,13 +19,13 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
+    <div className='App'>
       <Router>
         <Header/>
            <Routes>
         <Route
           exact path='/'
-          element={<Search/>}
+          element={<Search className='search'/>}
           />
       <Route
         exact path='/notebook'
@@ -33,7 +33,7 @@ function App() {
         />
            </Routes>
       </Router>
-    </>
+    </div>
   )
 }
 

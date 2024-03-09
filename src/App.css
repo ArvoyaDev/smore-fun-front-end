@@ -5,12 +5,30 @@
 * Headers -  font-family: 'Lato', sans-serif;
  */
 
+html, body, #root {
+    height: 100%
+}
 
+.App {
+    height: 100%;
 
+}
 Body {
     background: url("../public/assests/backgroundInfo.png") no-repeat center center fixed;
     background-size: cover;
     font-family: "Notica Text", serif !important;
+    height: 100vh;
+    width: 100%;
+}
+#root {
+    height: 100vh;
+    width: 100vw;
+}
+
+.search{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 
 .LogoHolder {
@@ -32,16 +50,32 @@ Body {
     perspective: 1000px; /* Set the perspective */
 }
 
+.boards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.alertsBoard{
+    max-width: 500px;
+    max-height: 500px;
+    overflow: hidden;
+}
+
 
 #parksRow {
     display: flex;
     justify-content: center;
+    margin-top: 25px;
 }
 .parkImageContainer{
     background-image: url("../public/assests/SVG/Modal-Background.svg");
     background-repeat: no-repeat;
     background-position: center; /* This will center the background image */
     height: 200px;
+    font-size: 13px;
+    font-weight: bold;
+    max-width: 162px !important;
 }
 
 .parkSign {
@@ -67,6 +101,27 @@ Body {
     postion: fixed;
     bottom: 0;
     width: 100%
+}
+
+.state-parks-carousel .carousel-control-prev{
+    width: 35px !important;
+}
+
+.state-parks-carousel .carousel-control-next{
+    width: 35px !important;
+}
+
+
+.state-parks-carousel .carousel-indicators{
+    bottom: -35px;
+}
+
+.state-parks-carousel .carousel-indicators li {
+    background-color: black !important;
+}
+
+.state-parks-carousel .carousel-indicators .active {
+    background-color: white !important;
 }
 
 .carousel-item {

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Weather from "./Weather.jsx";
 import StateParks from './StateParks.jsx';
+import Alerts from './Alerts.jsx';
 
 class Search extends React.Component {
 	constructor(props) {
@@ -10,6 +11,7 @@ class Search extends React.Component {
 			city: '',
 			weather: null,
 			campsites: null,
+			alerts: null,
 			chatGPT: null,
 			error: null,
 		};
@@ -26,11 +28,12 @@ class Search extends React.Component {
 			this.setState({
 				weather: response.data.weather,
 				campsites: response.data.campsites,
+				alerts: response.data.alerts,
 				chatGPT: response.data.chatGPT,
 				error: null
 			});
 		} catch (err) {
-			this.setState({ weather: null, campsites: null, chatGPT: null, error: err.response.data.error });
+			this.setState({ weather: null, campsites: null, chatGPT: null, alerts: null, error: err.response.data.error });
 		}
 	};
 
@@ -47,8 +50,13 @@ class Search extends React.Component {
 					<button type="submit">Search</button>
 				</form>
 				{this.state.error && <div>Error: {this.state.error}</div>}
-				<div className='bill-board'>
-				{this.state.weather && <Weather chatGPT={this.state.chatGPT} forecast={this.state.weather}/>}
+				<div className='boards'>
+					<div className='bill-board'>
+						{this.state.weather && <Weather chatGPT={this.state.chatGPT} forecast={this.state.weather}/>}
+					</div>
+					<div className='alertsBoard'>
+						{this.state.alerts && <Alerts alerts={this.state.alerts}/>}
+					</div>
 				</div>
 				{this.state.campsites && <StateParks campsites={this.state.campsites}/>}
 			</div>

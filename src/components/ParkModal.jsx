@@ -37,6 +37,7 @@ class ParkModal extends React.Component {
 						<br/>
 						<p>
 						{this.props.campsite.description}
+							{this.props.campsite.parkCode}
 						</p>
 						<br/>
 						<p>

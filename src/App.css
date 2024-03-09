@@ -1,42 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/*
+* regular text -  font-family: "Notica Text", serif';
+* Headers -  font-family: 'Lato', sans-serif;
+ */
+
+html, body, #root {
+    height: 100%
+}
+
+.App {
+    height: 100%;
+
+}
+Body {
+    background: url("../public/assests/backgroundInfo.png") no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Notica Text", serif !important;
+    height: 100vh;
+    width: 100%;
+}
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    height: 100vh;
+    width: 100vw;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.search{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.LogoHolder {
+    display: flex;
+    justify-content: center;
 }
 
-.card {
-  padding: 2em;
+.Logo {
+    margin-top: 25px;
+    max-width: 400px;
 }
 
-.read-the-docs {
-  color: #888;
+.weatherHolder {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    justify-content: space-around;
+    max-width: 500px;
+    margin-top: 100px;
+}
+
+.boards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.alertsBoard{
+    max-width: 500px;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.alertBoard {
+    max-height: 400px; /* Adjust this value as needed */
+    overflow-y: auto;
+}
+
+#parksRow {
+    position: fixed;
+    bottom: 75px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+.parkImageContainer{
+    background-image: url("../public/assests/SVG/Modal-Background.svg");
+    background-repeat: no-repeat;
+    background-position: center; /* This will center the background image */
+    height: 200px;
+    font-size: 13px;
+    font-weight: bold;
+    max-width: 162px !important;
+}
+
+.parkSign {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    margin: 20%;
+}
+
+.parkImageTitle{
+    font-family: 'Lato', sans-serif;
+    display: flex;
+}
+
+.parkImage {
+    margin-top: 20px;
+    max-height: 95px;
+}
+
+
+
+
+
+.state-parks-carousel .carousel-control-prev{
+    width: 35px !important;
+}
+
+.state-parks-carousel .carousel-control-next{
+    width: 35px !important;
+}
+
+
+.state-parks-carousel .carousel-indicators{
+    bottom: -35px;
+}
+
+.state-parks-carousel .carousel-indicators li {
+    background-color: black !important;
+}
+
+.state-parks-carousel .carousel-indicators .active {
+    background-color: white !important;
+}
+
+.carousel-item {
+    padding: 0 !important;
+}
+
+.custom-carousel img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.custom-carousel .carousel-indicators {
+    position: absolute;
+    bottom: 10%;
+}
+
+.modal-content{
+    background-image: url("../public/assests/SVG/Modal-Background.svg");
+    background-size: cover; /* This will scale the image to be as large as possible */
+    background-repeat: no-repeat;
+    height: 725px; /* Set a fixed height for the modal */
+    width: 500px; /* Set a fixed width for the modal */
+    background-position: center; /* This will center the background image */
+    padding: 15%;
+}
+
+.modal-body {
+    max-height: none;
+    overflow-y: auto;
+}
+
+.park-modal-backdrop{
+    background-color: rgba(0, 0, 0, 0.01) !important;
 }

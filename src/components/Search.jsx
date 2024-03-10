@@ -40,11 +40,7 @@ class Search extends React.Component {
 	render() {
 		return (
 			<div className='home-page'>
-				<div>
-				<div className='boards'>
-					<div className='bill-board'>
-						{this.state.weather && <Weather chatGPT={this.state.chatGPT} forecast={this.state.weather}/>}
-					</div>
+				<div className='search-bar'>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						type="text"
@@ -54,10 +50,15 @@ class Search extends React.Component {
 					/>
 					<button type="submit">Search</button>
 				</form>
+				</div>
+				<div className='boards'>
+					<div className='bill-board'>
+						{this.state.weather && <Weather chatGPT={this.state.chatGPT} forecast={this.state.weather}/>}
+					</div>
+					{this.state.error && <div>Error: {this.state.error}</div>}
 					<div className='alertsBoard'>
 						{this.state.alerts && <Alerts alerts={this.state.alerts}/>}
 					</div>
-				</div>
 				</div>
 				{this.state.campsites && <StateParks campsites={this.state.campsites}/>}
 			</div>

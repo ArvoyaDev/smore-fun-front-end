@@ -31,11 +31,7 @@ Body {
     overflow: hidden;
 }
 
-.home-page{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+
 
 .LogoHolder {
     display: flex;
@@ -47,20 +43,50 @@ Body {
     max-width: 400px;
 }
 
+.home-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.bill-board{
+    background-image: url("../public/assests/corkboard.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+}
 .weatherHolder {
     display: flex;
     flex-direction: column;
-    background: white;
     justify-content: space-around;
-    max-width: 500px;
-    margin-top: 100px;
+    max-width: 300px;
+    margin: 25px;
+}
+
+.weather-carousel {
+    width: 80% ;
+}
+
+.weather-fig{
+    display: flex !important;
+}
+
+.weather-day {
+/*    * TODO Change FONT for weather*/
 }
 
 .boards {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 15px;
 }
+
 
 .alertsBoard{
     max-width: 500px;

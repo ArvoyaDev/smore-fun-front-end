@@ -26,6 +26,7 @@ class Weather extends React.Component  {
 							<p key={index}>{line}</p>
 						))}
 					</section>
+						<img className='chatGPT-logo' src='../../public/assests/SVG/chatGPT.svg' alt='chatGPT logo also saying "powered by OpenAI"'/>
 				</div>
 			);
 		}

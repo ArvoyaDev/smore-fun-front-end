@@ -58,14 +58,15 @@ Body {
     background-image: url("../public/assests/corkboard.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-
 }
+
 .weatherHolder {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    height: 100%;
     max-width: 300px;
-    margin: 25px;
+    padding: 25px;
 }
 
 .weather-carousel {
@@ -76,8 +77,12 @@ Body {
     display: flex !important;
 }
 
-.weather-day {
-/*    * TODO Change FONT for weather*/
+.weather-description {
+    font-family: 'Lato', sans-serif;
+}
+
+.chatGPT{
+    font-family: 'Lato', sans-serif;
 }
 
 .boards {
@@ -89,14 +94,19 @@ Body {
 
 
 .alertsBoard{
+    background-image: url("../public/assests/alert-board.png");
+    background-size: 100% 100%;
     max-width: 500px;
     max-height: 400px;
     overflow: hidden;
+    padding: 80px;
 }
 
-.alertBoard {
-    max-height: 400px; /* Adjust this value as needed */
-    overflow-y: auto;
+.ranger-board{
+    padding: 80px;
+    overflow: auto;
+    margin-top: 75px;
+    height: 200px; /* Adjust this value according to your needs */
 }
 
 #parksRow {

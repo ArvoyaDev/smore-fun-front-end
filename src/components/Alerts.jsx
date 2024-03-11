@@ -6,7 +6,7 @@ class Alerts extends React.Component {
 		return(
 		<div >
 			<h1>Alerts</h1>
-			<Accordion className='alertBoard' defaultActiveKey='0'>
+			<Accordion className='ranger-board' defaultActiveKey='0'>
 				{this.props.alerts.map( (alert, id) => {
 					return <Accordion.Item key={id} eventKey={id}>
 						<Accordion.Header>{alert.title}</Accordion.Header>

@@ -10,8 +10,38 @@ class StateParks extends React.Component {
 		super(props);
 		this.state={
 			showModal: false,
-			activeCampsite: null
+			activeCampsite: null,
+			itemsPerPage: 10 // Step 1: Create a state variable
 		}
+	}
+
+	componentDidMount() {
+		this.updateItemsPerPage(); // Step 3: Call the function on component mount
+		window.addEventListener('resize', this.updateItemsPerPage); // Step 4: Call the function on window resize
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.itemsPerPage !== prevState.itemsPerPage) {
+			this.updateItemsPerPage();
+		}
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.updateItemsPerPage);
+	}
+
+	updateItemsPerPage = () => {
+		let itemsPerPage;
+		if (window.innerWidth <= 600) {
+			itemsPerPage = 3;
+		} else if (window.innerWidth <= 1260) {
+			itemsPerPage = 5;
+		} else {
+			itemsPerPage = 10;
+		}
+		this.setState({
+			itemsPerPage: itemsPerPage
+		});
 	}
 
 	toggleModal = (campsite) => {
@@ -22,9 +52,9 @@ class StateParks extends React.Component {
 			}
 		})
 	}
-	render() {
 
-	let campSites = this.props.campsites.filter(campsite => campsite.images.length !== 0 && campsite.description !== '');
+	render() {
+		let campSites = this.props.campsites.filter(campsite => campsite.images.length !== 0 && campsite.description !== '');
 
 		function chunkArray(array, chunkSize) {
 			let results = [];
@@ -34,7 +64,7 @@ class StateParks extends React.Component {
 			return results;
 		}
 
-		let chunks = chunkArray(campSites, 10);
+		let chunks = chunkArray(campSites, this.state.itemsPerPage); // Step 5: Use the state variable
 
 		const handleButtonClick = (url) => {
 			window.open(url, '_blank');

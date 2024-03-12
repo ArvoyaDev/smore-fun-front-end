@@ -11,8 +11,8 @@ html, body, #root {
 
 .App {
     height: 100%;
-
 }
+
 Body {
     background: url("../public/assests/backgroundInfo.png") no-repeat center center fixed;
     background-size: cover;
@@ -20,6 +20,7 @@ Body {
     height: 100vh;
     width: 100%;
 }
+
 #root {
     height: 100vh;
     width: 100vw;
@@ -30,7 +31,6 @@ Body {
     width: 100%;
     overflow: hidden;
 }
-
 
 
 .LogoHolder {
@@ -54,10 +54,19 @@ Body {
     justify-content: space-around;
 }
 
+.boards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px;
+    height: 500px;
+}
+
 .bill-board{
     background-image: url("../public/assests/corkboard.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    height: 450px;
 }
 
 .weatherHolder {
@@ -65,7 +74,7 @@ Body {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    max-width: 300px;
+    width: 300px;
     padding: 25px;
 }
 
@@ -85,29 +94,32 @@ Body {
     font-family: 'Lato', sans-serif;
 }
 
-.boards {
+
+.ranger-board-holder{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 15px;
-}
-
-
-.alertsBoard{
-    background-image: url("../public/assests/alert-board.png");
+    flex-direction: column;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;
+    height: 450px;
+    background: black;
+    width: 300px;
+    background: url("../public/assests/corkboard.png"); /* Change this to your desired color or image */
     background-size: 100% 100%;
-    max-width: 500px;
-    max-height: 400px;
-    overflow: hidden;
-    padding: 80px;
 }
 
-.ranger-board{
-    padding: 80px;
-    overflow: auto;
-    margin-top: 75px;
-    height: 200px; /* Adjust this value according to your needs */
+.ranger-board {
+    width: 250px;
+    height: 300px;
+    overflow-y: auto;
 }
+.ranger-board .accordion-button {
+    background: aqua !important; /* Change this to your desired color */
+}
+
+.ranger-board-alert{
+    background: pink !important;
+}
+
 
 #parksRow {
     position: fixed;
@@ -117,7 +129,6 @@ Body {
     display: flex;
     justify-content: center;
 }
-
 
 .parkImageContainer{
     background-image: url("../public/assests/SVG/Modal-Background.svg");
@@ -145,9 +156,6 @@ Body {
     margin-top: 20px;
     max-height: 95px;
 }
-
-
-
 
 
 .state-parks-carousel .carousel-control-prev{

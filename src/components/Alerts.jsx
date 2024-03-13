@@ -5,7 +5,7 @@ class Alerts extends React.Component {
 	render() {
 		return(
 		<div className='ranger-board-holder'>
-			<h1>Alerts</h1>
+			<h1 className='ranger-board-header'>State Parks Alerts</h1>
 			<Accordion className='ranger-board' defaultActiveKey='0'>
 				{this.props.alerts.map( (alert, id) => {
 					return <Accordion.Item className='ranger-board-alert' key={id} eventKey={id}>

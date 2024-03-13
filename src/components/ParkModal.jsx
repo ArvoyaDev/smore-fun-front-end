@@ -23,11 +23,14 @@ class ParkModal extends React.Component {
 						<div className="custom-carousel">
 							<img
 								className="d-block w-100"
-								src={campsite.images[0].url}
+							src={campsite.images[0].url}
 								alt={campsite.images[0].altText}
 							/>
 							<br/>
 							<h2>{campsite.images[0].caption}</h2>
+							<br/>
+							<p>{campsite.distance} miles away from {this.props.city}</p>
+							<p>{campsite.duration}</p>
 						</div>
 						<br/>
 						<p>

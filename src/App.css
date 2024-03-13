@@ -3,14 +3,20 @@
 /*
 * regular text -  font-family: "Notica Text", serif';
 * Headers -  font-family: 'Lato', sans-serif;
+* Blue - #85e2f3
+* Red - #F23216
+* Orange - #FF741D
+* Brown - #310103
  */
 
 html, body, #root {
-    height: 100%
+    height: 100vh;
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
 }
 
+
 .App {
-    height: 100%;
+    height: 100vh;
 }
 
 Body {
@@ -18,12 +24,56 @@ Body {
     background-size: cover;
     font-family: "Notica Text", serif !important;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
 }
 
 #root {
     height: 100vh;
     width: 100vw;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-bar, .LogoHolder, .login-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.nav-bar-background{
+    display: flex;
+    justify-content: space-around;
+    background: #fff8ed;
+    padding: 12px;
+    width: 300px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.login-bar-background{
+    background: #fff8ed;
+    width: 300px;
+    padding: 12px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+
+.nav-buttons{
+    background: #41987a;
+    padding: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    color: #fff8ed;
+}
+
+.nav-buttons:hover{
+    border: 2px solid #FF741D;
 }
 
 .search{
@@ -33,14 +83,9 @@ Body {
 }
 
 
-.LogoHolder {
-    display: flex;
-    justify-content: center;
-}
-
 .Logo {
     margin-top: 25px;
-    max-width: 400px;
+    width: 400px;
 }
 
 .home-page{
@@ -54,12 +99,68 @@ Body {
     justify-content: space-around;
 }
 
+.search-bar-background{
+    padding: 7px;
+    background: #310103;
+    border-radius: 20px;
+    color: white;
+}
+
+.search-Form {
+    background: #FF741D;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+
+.search-Form input {
+    background-color: transparent;
+    color: white;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid white;
+    font-family: 'Lato', sans-serif;
+}
+
+.search-Form input::placeholder {
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+.search-Form input:focus {
+    outline: none;
+    border-bottom: 1px solid #41987a;
+    .search-Form{
+        border: 4px solid #fff8ed;
+    }
+}
+
+.search-button{
+    background: transparent;
+    border-radius: 15px;
+    border: 1px solid #310103;
+    color: #310103;
+    font-family: 'Lato', sans-serif;
+}
+
+.search-button:hover {
+    color: white;
+    border: 1px solid #fff8ed;
+}
+
+.search-button:active {
+    background: #41987a;
+    color: white
+}
+
 .boards {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 15px;
-    height: 500px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 450px;
 }
 
 .bill-board{
@@ -69,13 +170,22 @@ Body {
     height: 450px;
 }
 
+
 .weatherHolder {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     height: 100%;
     width: 300px;
     padding: 25px;
+}
+
+.weather-header{
+    font-family: 'Lato', sans-serif;
+    font-size: x-large;
+    font-weight: bolder;
+    color: #310103;
 }
 
 .weather-carousel {
@@ -86,12 +196,21 @@ Body {
     display: flex !important;
 }
 
+.weather-img{
+    height: 95px !important;
+}
+
 .weather-description {
     font-family: 'Lato', sans-serif;
 }
 
 .chatGPT{
     font-family: 'Lato', sans-serif;
+}
+
+.chatGPT-logo{
+    margin-top: 3px;
+    height: 30px;
 }
 
 
@@ -112,20 +231,37 @@ Body {
     height: 300px;
     overflow-y: auto;
 }
-.ranger-board .accordion-button {
-    background: aqua !important; /* Change this to your desired color */
+
+.ranger-board-header{
+    font-family: 'Lato', sans-serif;
+    font-size: x-large;
+    font-weight: bolder;
+    margin-bottom: 35px;
+    color: #310103;
 }
 
-.ranger-board-alert{
-    background: pink !important;
+
+.ranger-board .accordion-button {
+    background: #41987a;
+    color: #fff8ed ;
+    border: none;
+}
+
+
+.ranger-board .accordion-button:not(.collapsed) {
+    background: #41987a;
+    color: #fff8ed ;
+    border: none;
+}
+
+.ranger-board .accordion-body{
+    background: #fff8ed;
+    color: #310103
 }
 
 
 #parksRow {
-    position: fixed;
-    bottom: 75px;
-    left: 0;
-    right: 0;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
 }
@@ -153,8 +289,8 @@ Body {
 }
 
 .parkImage {
-    margin-top: 20px;
-    max-height: 95px;
+    margin-top: 10px;
+    max-height: 65px;
 }
 
 
@@ -196,11 +332,11 @@ Body {
 
 .modal-content{
     background-image: url("../public/assests/SVG/Modal-Background.svg");
-    background-size: cover; /* This will scale the image to be as large as possible */
+    background-size: cover;
     background-repeat: no-repeat;
-    height: 725px; /* Set a fixed height for the modal */
-    width: 500px; /* Set a fixed width for the modal */
-    background-position: center; /* This will center the background image */
+    height: 725px;
+    width: 500px;
+    background-position: center;
     padding: 15%;
 }
 
@@ -211,4 +347,13 @@ Body {
 
 .park-modal-backdrop{
     background-color: rgba(0, 0, 0, 0.01) !important;
+}
+
+.note-title {
+    font-weight: bold;
+    margin-right: 10px; /* Add some margin to the right of the note title */
+}
+
+.note-date{
+    color: grey;
 }

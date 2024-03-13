@@ -11,13 +11,13 @@ class StateParks extends React.Component {
 		this.state={
 			showModal: false,
 			activeCampsite: null,
-			itemsPerPage: 10 // Step 1: Create a state variable
+			itemsPerPage: 10
 		}
 	}
 
 	componentDidMount() {
-		this.updateItemsPerPage(); // Step 3: Call the function on component mount
-		window.addEventListener('resize', this.updateItemsPerPage); // Step 4: Call the function on window resize
+		this.updateItemsPerPage();
+		window.addEventListener('resize', this.updateItemsPerPage);
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -64,11 +64,12 @@ class StateParks extends React.Component {
 			return results;
 		}
 
-		let chunks = chunkArray(campSites, this.state.itemsPerPage); // Step 5: Use the state variable
+		let chunks = chunkArray(campSites, this.state.itemsPerPage);
 
 		const handleButtonClick = (url) => {
 			window.open(url, '_blank');
 		};
+
 
 		return (
 			<div id='parksRow'>
@@ -87,8 +88,10 @@ class StateParks extends React.Component {
 												onClick={() => this.toggleModal(campsite)}
 												src={campsite.images[0].url}
 											/>
+											<p>{campsite.distance} miles</p>
+											<p>{campsite.duration}</p>
 										</Figure>
-										<ParkModal key={id} campsite={this.state.activeCampsite} show={this.state.showModal} toggleModal={this.toggleModal}/>
+										<ParkModal key={id} campsite={this.state.activeCampsite} show={this.state.showModal} toggleModal={this.toggleModal} city={this.props.city}/>
 									</Col>
 								))}
 							</Row>

@@ -113,10 +113,10 @@ class Notebook extends React.Component {
 						{this.state.notes.map((note, index) => (
 							<Accordion.Item eventKey={index.toString()} key={note._id}>
 								<Accordion.Header>
-									{note.date}
+									<span className="note-title">{note.title}</span>
+									<p className='note-date'>{note.date}</p>
 								</Accordion.Header>
 								<Accordion.Body>
-									<h2>{note.title}</h2>
 									<p>{note.entry}</p>
 									<Button variant="danger" onClick={() => this.deleteNote(note._id)} style={{marginLeft: '10px'}}>Delete</Button>
 									<Button variant="primary" onClick={() => this.openModal(note)} style={{marginLeft: '10px'}}>Edit</Button>

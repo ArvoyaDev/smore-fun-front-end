@@ -14,6 +14,7 @@ class Weather extends React.Component  {
 		if (this.props.forecast) {
 			return (
 				<div className={'weatherHolder'}>
+					<h1 className='weather-header'>Weather & Camping Tips</h1>
 					<Carousel slide={false} fade className={"weather-carousel"}>
 						{this.props.forecast.map((element, id) => (
 							<Carousel.Item key={id} interval={5000}>

@@ -16,7 +16,7 @@ class Search extends React.Component {
 			'Loading Campsites',
 			'Finding Campsites',
 			'Calculating Distance',
-			'This takes a bit because I\'m using LocationIQ that limit 2 requests per 1 second',
+			'LocationIQ makes me struggle',
 			'Summoning the camping spirits',
 			'Inflating the air mattress',
 			'Pitching the tent',

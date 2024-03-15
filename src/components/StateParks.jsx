@@ -24,7 +24,7 @@ class StateParks extends React.Component {
 		if (this.state.itemsPerPage !== prevState.itemsPerPage) {
 			this.updateItemsPerPage();
 		}
-	}
+}
 
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.updateItemsPerPage);
@@ -72,33 +72,35 @@ class StateParks extends React.Component {
 
 
 		return (
-			<div id='parksRow'>
-				<Carousel className='state-parks-carousel' interval={30000}>
-					{chunks.map((chunk, index) => (
-						<Carousel.Item key={index}>
-							<Row>
-								{chunk.map((campsite, id) => (
-									<Col className='parkImageContainer' key={id}>
-										<Figure className='parkSign'>
-											<Figure.Caption className='parkImageTitle'>
-												{campsite.title}
-											</Figure.Caption>
-											<Figure.Image
-												className='parkImage'
-												onClick={() => this.toggleModal(campsite)}
-												src={campsite.images[0].url}
-											/>
-											<p>{campsite.distance} miles</p>
-											<p>{campsite.duration}</p>
-										</Figure>
-										<ParkModal key={id} campsite={this.state.activeCampsite} show={this.state.showModal} toggleModal={this.toggleModal} city={this.props.city}/>
-									</Col>
-								))}
-							</Row>
-						</Carousel.Item>
-					))}
-				</Carousel>
-			</div>
+			<>
+				<div id='parksRow'>
+					<Carousel className='state-parks-carousel' interval={30000}>
+						{chunks.map((chunk, index) => (
+							<Carousel.Item key={index}>
+								<Row>
+									{chunk.map((campsite, id) => (
+										<Col className='parkImageContainer' key={id}>
+											<Figure className='parkSign'>
+												<Figure.Caption className='parkImageTitle'>
+													{campsite.title}
+												</Figure.Caption>
+												<Figure.Image
+													className='parkImage'
+													onClick={() => this.toggleModal(campsite)}
+													src={campsite.images[0].url}
+												/>
+												<p>{campsite.distance} miles</p>
+												<p>{campsite.duration}</p>
+											</Figure>
+										</Col>
+									))}
+								</Row>
+							</Carousel.Item>
+						))}
+					</Carousel>
+				</div>
+				<ParkModal campsite={this.state.activeCampsite} show={this.state.showModal} toggleModal={this.toggleModal} city={this.props.city}/>
+			</>
 		);
 	}
 }

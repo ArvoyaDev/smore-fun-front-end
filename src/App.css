@@ -341,7 +341,7 @@ Body {
 .parkImageContainer{
     background-image: url("../public/assests/SVG/Modal-Background.svg");
     background-repeat: no-repeat;
-    background-position: center; /* This will center the background image */
+    background-position: center;
     height: 200px;
     font-size: 13px;
     font-weight: bold;
@@ -363,6 +363,11 @@ Body {
 .parkImage {
     margin-top: 10px;
     max-height: 65px;
+}
+
+.parkImage:hover{
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #FF741D;
 }
 
 
@@ -417,7 +422,8 @@ Body {
 }
 
 .park-modal-backdrop{
-    background-color: rgba(0, 0, 0, 0.01) !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    z-index: unset !important;
 }
 
 

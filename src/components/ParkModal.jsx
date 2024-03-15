@@ -22,24 +22,20 @@ class ParkModal extends React.Component {
 						<Modal.Title>{this.props.campsite.title}</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
-						{/*<Carousel indicators={campsite.images.length > 1} controls={campsite.images.length > 1}>*/}
-						{/*	{campsite.images.map((image, index) => (*/}
-						{/*		<Carousel.Item key={index}>*/}
-						{/*			<img className="d-block w-100" src={image.url} alt={image.altText}/>*/}
-						{/*		</Carousel.Item>*/}
-						{/*	))}*/}
-						{/*</Carousel>*/}
+						<Carousel indicators={campsite.images.length > 1} controls={campsite.images.length > 1}>
+							{campsite.images.map((image, index) => (
+								<Carousel.Item key={index}>
+									<img className="d-block w-100" src={image.url} alt={image.altText}/>
+								</Carousel.Item>
+							))}
+						</Carousel>
+						<br/>
 						<div className="custom-carousel">
-							<img
-								className="d-block w-100"
-							src={campsite.images[0].url}
-								alt={campsite.images[0].altText}
-							/>
-							<br/>
 							<h2>{campsite.images[0].caption}</h2>
 							<br/>
 							<p>{campsite.distance} miles away from {this.props.city}</p>
-							<p>{campsite.duration}</p>
+							<br/>
+							<p>{campsite.duration} ~ travel time by car</p>
 						</div>
 						<br/>
 						<p>

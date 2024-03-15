@@ -2,16 +2,13 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import WeatherDay from "./WeatherDay.jsx";
 
-/*
-TODO make it be a stand alone widget with cycling through different days.
-TODO Get name, high and low temp from API
-TODO Background will be grey/transparent
- */
+
 class Weather extends React.Component  {
 
 	render() {
 
 		if (this.props.forecast) {
+
 			return (
 				<div className={'weatherHolder'}>
 					<h1 className='weather-header'>Weather & Camping Tips</h1>

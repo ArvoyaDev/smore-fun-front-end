@@ -32,6 +32,21 @@ Body {
     width: 100vw;
 }
 
+.welcome-background{
+    display: flex;
+    justify-content: space-around;
+}
+
+.welcome-text{
+    background: #fff8ed;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid #41987a;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
 .header{
     display: flex;
     justify-content: space-between;
@@ -55,6 +70,9 @@ Body {
 }
 
 .login-bar-background{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: #fff8ed;
     width: 300px;
     padding: 12px;
@@ -62,11 +80,16 @@ Body {
     border-top-left-radius: 15px;
 }
 
+.welcome{
+    font-family: 'Lato', sans-serif;
+}
+
 
 .nav-buttons{
     background: #41987a;
     padding: 5px;
     border-radius: 10px;
+    border: none;
     text-decoration: none;
     font-family: 'Lato', sans-serif;
     color: #fff8ed;
@@ -74,6 +97,22 @@ Body {
 
 .nav-buttons:hover{
     border: 2px solid #FF741D;
+    padding: 3px;
+}
+
+.nav-buttons-logout{
+    background: #F23216;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    color: #fff8ed;
+}
+
+.nav-buttons-logout:hover{
+    border: 2px solid #310103;
+    padding: 3px;
 }
 
 .search{
@@ -82,10 +121,43 @@ Body {
     overflow: hidden;
 }
 
+.loading-container{
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 15px;
+    background-color: #fff8ed;
+}
+
+.loading-background{
+    font-family: 'Lato', sans-serif;
+}
+
+.error-message{
+    background-color: #fff8ed;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 10px;
+    border: 3px solid #F23216;
+}
 
 .Logo {
     margin-top: 25px;
     width: 400px;
+}
+
+@media (max-width: 1000px) {
+    .Logo {
+        width: 225px; /* Adjust this value as needed */
+    }
+    .search-bar{
+        margin-bottom: 45px;
+        margin-top: 45px;
+    }
+    #parksRow{
+        margin-top: 75px !important;
+    }
 }
 
 .home-page{
@@ -261,7 +333,7 @@ Body {
 
 
 #parksRow {
-    margin-top: 15px;
+    margin-top: 45px;
     display: flex;
     justify-content: center;
 }
@@ -341,13 +413,14 @@ Body {
 }
 
 .modal-body {
-    max-height: none;
     overflow-y: auto;
 }
 
 .park-modal-backdrop{
     background-color: rgba(0, 0, 0, 0.01) !important;
 }
+
+
 
 .note-title {
     font-weight: bold;
@@ -356,4 +429,39 @@ Body {
 
 .note-date{
     color: grey;
+}
+
+.notebook-container {
+    background-color: #fff8ed;
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+
+.notebook-header{
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Lato', sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+    color: #310103;
+    margin-bottom: 25px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff8ed;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 25px;
+    font-family: 'Lato', sans-serif;
+    font-size: larger;
+    color: #310103;
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Carousel from "react-bootstrap/Carousel";
 
 class ParkModal extends React.Component {
+
 	render() {
 		const { campsite } = this.props;
 		if (!campsite) {
@@ -20,6 +22,13 @@ class ParkModal extends React.Component {
 						<Modal.Title>{this.props.campsite.title}</Modal.Title>
 					</Modal.Header>
 					<Modal.Body>
+						{/*<Carousel indicators={campsite.images.length > 1} controls={campsite.images.length > 1}>*/}
+						{/*	{campsite.images.map((image, index) => (*/}
+						{/*		<Carousel.Item key={index}>*/}
+						{/*			<img className="d-block w-100" src={image.url} alt={image.altText}/>*/}
+						{/*		</Carousel.Item>*/}
+						{/*	))}*/}
+						{/*</Carousel>*/}
 						<div className="custom-carousel">
 							<img
 								className="d-block w-100"
@@ -42,7 +51,7 @@ class ParkModal extends React.Component {
 						</p>
 					</Modal.Body>
 					<Modal.Footer>
-						{this.props.campsite.reservationUrl ? <button onClick={() => window.open(this.props.campsite.reservationUrl, '_blank')}>Reserve Now</button>: null}
+						{this.props.campsite.reservationUrl ? <button className='nav-buttons' onClick={() => window.open(this.props.campsite.reservationUrl, '_blank')}>Reserve Now</button>: null}
 					</Modal.Footer>
 				</Modal>
 			</>

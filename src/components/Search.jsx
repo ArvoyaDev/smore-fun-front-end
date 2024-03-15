@@ -4,10 +4,33 @@ import Weather from "./Weather.jsx";
 import StateParks from './StateParks.jsx';
 import Alerts from './Alerts.jsx';
 import { Spinner } from 'react-bootstrap';
+import { withAuth0 } from '@auth0/auth0-react';
 
+
+const backendServer = import.meta.env.VITE_APP_BACKEND_URL
 class Search extends React.Component {
 	constructor(props) {
 		super(props);
+		const loadingMessages = [
+			'Cooking S\'mores',
+			'Loading Campsites',
+			'Finding Campsites',
+			'Calculating Distance',
+			'This takes a bit because I\'m using LocationIQ that limit 2 requests per 1 second',
+			'Summoning the camping spirits',
+			'Inflating the air mattress',
+			'Pitching the tent',
+			'Starting the campfire',
+			'Roasting marshmallows',
+			'Spotting constellations',
+			'Telling ghost stories',
+			'Listening to the crickets',
+			'Catching fireflies',
+			'Unrolling the sleeping bag',
+			'Turning off the lantern',
+			'Zipping up the tent',
+			'Dreaming of s\'mores'
+		];
 		this.state = {
 			city: '',
 			weather: null,
@@ -16,7 +39,16 @@ class Search extends React.Component {
 			chatGPT: null,
 			error: null,
 			loading: false,
+			loadingMessages: loadingMessages,
+			loadingMessagesCopy: [...loadingMessages],
+			currentLoadingMessage: '',
 		};
+	}
+
+	getToken = () => {
+		return this.props.auth0.getIdTokenClaims()
+		.then(res => res.__raw)
+		.catch(err => console.err(err))
 	}
 
 	handleChange = (event) => {
@@ -28,14 +60,33 @@ class Search extends React.Component {
 
 	handleSubmit = async (event) => {
 		event.preventDefault();
+		const token = await this.getToken();
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		};
+
+		this.loadingInterval = setInterval(() => {
+			if (this.state.loadingMessagesCopy.length === 0) {
+				this.setState({ loadingMessagesCopy: [...this.state.loadingMessages] });
+			}
+			const randomIndex = Math.floor(Math.random() * this.state.loadingMessagesCopy.length);
+			const nextMessage = this.state.loadingMessagesCopy[randomIndex];
+			this.setState(prevState => ({
+				currentLoadingMessage: nextMessage,
+				loadingMessagesCopy: prevState.loadingMessagesCopy.filter((_, index) => index !== randomIndex)
+			}));
+		}, 2000); // Change message every 2 seconds
 
 		this.setState({
 			loading: true,
+			currentLoadingMessage: this.state.loadingMessages[0],
 			error: null // clear the error state
 		});
 
 		try {
-			const response = await axios.get(`http://localhost:3001/api/city-info?city=${this.state.city}`);
+			const response = await axios.get(`${backendServer}/api/city-info?city=${this.state.city}`, config);
 			this.setState({
 				weather: response.data.weather,
 				campsites: response.data.campsites,
@@ -44,6 +95,7 @@ class Search extends React.Component {
 				error: null,
 				loading: false
 			});
+			clearInterval(this.loadingInterval); // Stop changing the message
 		} catch (err) {
 			this.setState({
 				weather: null,
@@ -53,15 +105,18 @@ class Search extends React.Component {
 				error: err.response ? err.response.data.error : 'An error occurred',
 				loading: false
 			});
+			clearInterval(this.loadingInterval); // Stop changing the message
 		}
 	};
 
 	render() {
 		if (this.state.loading) {
 			return (
-				<div className="d-flex justify-content-center align-items-center">
-					<Spinner animation="border" role="status" />
-					<span className="ml-2">Cooking S'mores</span>
+				<div className="loading-container">
+					<div className="d-flex justify-content-center align-items-center loading-background">
+						<Spinner animation="border" role="status"/>
+						<span className="ml-2">{this.state.currentLoadingMessage}</span>
+					</div>
 				</div>
 			);
 		}
@@ -86,7 +141,7 @@ class Search extends React.Component {
 					<div className='bill-board'>
 						{this.state.weather && <Weather chatGPT={this.state.chatGPT} forecast={this.state.weather}/>}
 					</div>
-					{this.state.error && <div>Error: {this.state.error}</div>}
+					{this.state.error && <div className='error-message'>Error: {this.state.error}</div>}
 					<div className='alertsBoard'>
 						{this.state.alerts && <Alerts alerts={this.state.alerts}/>}
 					</div>
@@ -97,4 +152,4 @@ class Search extends React.Component {
 	}
 }
 
-export default Search;
+export default  withAuth0(Search);

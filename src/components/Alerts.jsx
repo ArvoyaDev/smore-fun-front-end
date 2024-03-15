@@ -12,7 +12,8 @@ class Alerts extends React.Component {
 						<Accordion.Header className='ranger-board-header'>{alert.title}</Accordion.Header>
 						<Accordion.Body>
 							<p>{alert.description}</p>
-							{alert.url !== '' ? <button onClick={() => window.open(alert.url, '_blank')}>More Info</button> : null}
+							<br/>
+							{alert.url !== '' ? <button  className='nav-buttons' onClick={() => window.open(alert.url, '_blank')}>More Info</button> : null}
 						</Accordion.Body>
 					</Accordion.Item>
 				})}

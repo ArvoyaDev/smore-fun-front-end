@@ -1,10 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import logo from '../../public/assests/SVG/Logo_1.svg';
+import logo from '../../public/assests/SVG/logo-green.svg';
+import {withAuth0 } from "@auth0/auth0-react";
+import Login from "./Login.jsx";
+import Logout from "./Logout.jsx";
+
 
 
 class Header extends React.Component {
-	render() {
+
+render() {
+	const { user, isAuthenticated } = this.props.auth0;
+
+
 		return (
 			<div className='header'>
 				<div className='nav-bar'>
@@ -22,9 +30,9 @@ class Header extends React.Component {
 				</div>
 				<div className='login-bar'>
 					<div className='login-bar-background'>
-						<div className='nav-buttons-background'>
-							<Link className='nav-buttons' to='/'>Login</Link>
-						</div>
+						{isAuthenticated ? <p className='welcome'>Welcome {user.name.split(' ')[0]}!</p>: null}
+						{isAuthenticated ?<Link className='nav-buttons' to='/profile'>Profile</Link> : null}
+						{isAuthenticated ? <Logout/> : <Login/>}
 					</div>
 				</div>
 			</div>
@@ -32,4 +40,4 @@ class Header extends React.Component {
 	}
 }
 
-export default Header;
+export default withAuth0(Header);

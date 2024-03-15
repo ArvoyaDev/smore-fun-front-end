@@ -10,8 +10,38 @@ class StateParks extends React.Component {
 		super(props);
 		this.state={
 			showModal: false,
-			activeCampsite: null
+			activeCampsite: null,
+			itemsPerPage: 10
 		}
+	}
+
+	componentDidMount() {
+		this.updateItemsPerPage();
+		window.addEventListener('resize', this.updateItemsPerPage);
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.itemsPerPage !== prevState.itemsPerPage) {
+			this.updateItemsPerPage();
+		}
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.updateItemsPerPage);
+	}
+
+	updateItemsPerPage = () => {
+		let itemsPerPage;
+		if (window.innerWidth <= 600) {
+			itemsPerPage = 3;
+		} else if (window.innerWidth <= 1260) {
+			itemsPerPage = 5;
+		} else {
+			itemsPerPage = 10;
+		}
+		this.setState({
+			itemsPerPage: itemsPerPage
+		});
 	}
 
 	toggleModal = (campsite) => {
@@ -22,9 +52,9 @@ class StateParks extends React.Component {
 			}
 		})
 	}
-	render() {
 
-	let campSites = this.props.campsites.filter(campsite => campsite.images.length !== 0 && campsite.description !== '');
+	render() {
+		let campSites = this.props.campsites.filter(campsite => campsite.images.length !== 0 && campsite.description !== '');
 
 		function chunkArray(array, chunkSize) {
 			let results = [];
@@ -34,11 +64,12 @@ class StateParks extends React.Component {
 			return results;
 		}
 
-		let chunks = chunkArray(campSites, 10);
+		let chunks = chunkArray(campSites, this.state.itemsPerPage);
 
 		const handleButtonClick = (url) => {
 			window.open(url, '_blank');
 		};
+
 
 		return (
 			<div id='parksRow'>
@@ -57,8 +88,10 @@ class StateParks extends React.Component {
 												onClick={() => this.toggleModal(campsite)}
 												src={campsite.images[0].url}
 											/>
+											<p>{campsite.distance} miles</p>
+											<p>{campsite.duration}</p>
 										</Figure>
-										<ParkModal key={id} campsite={this.state.activeCampsite} show={this.state.showModal} toggleModal={this.toggleModal}/>
+										<ParkModal key={id} campsite={this.state.activeCampsite} show={this.state.showModal} toggleModal={this.toggleModal} city={this.props.city}/>
 									</Col>
 								))}
 							</Row>

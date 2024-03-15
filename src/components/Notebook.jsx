@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { Accordion, Button } from 'react-bootstrap';
 import Note from './Note.jsx';
+import { withAuth0 } from '@auth0/auth0-react';
+
 
 
 const backendServer = import.meta.env.VITE_APP_BACKEND_URL
@@ -12,7 +14,7 @@ class Notebook extends React.Component {
 		this.state = {
 			notes: [],
 			newNote: {
-				date: '', // Initialize date to an empty string
+				date: '',
 				title: '',
 				entry: ''
 			},
@@ -23,7 +25,18 @@ class Notebook extends React.Component {
 	componentDidMount() {
 		this.fetchNotes();
 	}
+	componentDidUpdate(prevProps) {
+		// Check if the user has changed
+		if (this.props.auth0.user !== prevProps.auth0.user) {
+			this.fetchNotes();
+		}
+	}
 
+	getToken = () => {
+		return this.props.auth0.getIdTokenClaims()
+		.then(res => res.__raw)
+		.catch(err => console.err(err))
+	}
 
 
 	openModal = (note) => {
@@ -31,6 +44,7 @@ class Notebook extends React.Component {
 			showModal: true,
 			newNote: note
 				? {
+					_id: note._id,
 					date: note.date || '', // Use an empty string if date is undefined
 					title: note.title || '', // Use an empty string if title is undefined
 					entry: note.entry || '' // Use an empty string if entry is undefined
@@ -50,13 +64,32 @@ class Notebook extends React.Component {
 	};
 
 	fetchNotes = async () => {
-		const response = await axios.get(`${backendServer}/notes`);
-		this.setState({notes: response.data});
+		const token = await this.getToken();
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		};
+
+		try{
+			const response = await axios.get(`${backendServer}/notes`, config);
+			this.setState({notes: response.data});
+		} catch (error){
+			console.error('Error fetching notes', error);
+		}
+
 	};
 
 	createNote = async (note) => {
+		const token = await this.getToken();
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		};
+
 		try {
-			await axios.post(`${backendServer}/notes`, note);
+			await axios.post(`${backendServer}/notes`, note, config);
 			this.fetchNotes();
 		} catch (error) {
 			console.error('Error creating note:', error);
@@ -64,13 +97,33 @@ class Notebook extends React.Component {
 	};
 
 	updateNote = async (id, updatedNote) => {
-		await axios.put(`${backendServer}/notes/${id}`, updatedNote);
-		this.fetchNotes();
+		const token = await this.getToken();
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		};
+		try {
+			await axios.put(`${backendServer}/notes/${id}`, updatedNote, config);
+			this.fetchNotes();
+		} catch(error){
+			console.error('Error updating note:', error);
+		}
 	};
 
 	deleteNote = async (id) => {
-		await axios.delete(`${backendServer}/notes/${id}`);
-		this.fetchNotes();
+		const token = await this.getToken();
+		const config = {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		};
+		try{
+			await axios.delete(`${backendServer}/notes/${id}`, config);
+			this.fetchNotes();
+		} catch(error){
+			console.error('Error deleting note:', error);
+		}
 	};
 
 	handleInputChange = (event) => {
@@ -106,21 +159,24 @@ class Notebook extends React.Component {
 	};
 
 	render() {
+
+		const { user} = this.props.auth0;
 		return (
 			<div className="notebook-container">
+				<h1 className='notebook-header'>{user.name.split(' ')[0]}'s Notebook</h1>
 				<div className="notes-display">
-					<Accordion>
+					<Accordion className='accordion'>
 						{this.state.notes.map((note, index) => (
 							<Accordion.Item eventKey={index.toString()} key={note._id}>
 								<Accordion.Header>
-									{note.date}
+									<span className="note-title">{note.title}</span>
+									<p className='note-date'>{note.date}</p>
 								</Accordion.Header>
 								<Accordion.Body>
-									<h2>{note.title}</h2>
-									<p>{note.entry}</p>
+									<p>{note.entry.split('\n').map((line, i) => <span key={i}>{line}<br/></span>)}</p>
+									<br/>
 									<Button variant="danger" onClick={() => this.deleteNote(note._id)} style={{marginLeft: '10px'}}>Delete</Button>
-									<Button variant="primary" onClick={() => this.openModal(note)} style={{marginLeft: '10px'}}>Edit</Button>
-								</Accordion.Body>
+									<Button variant="primary" onClick={() => this.openModal(note)} style={{marginLeft: '10px'}}>Edit</Button>								</Accordion.Body>
 							</Accordion.Item>
 						))}
 					</Accordion>
@@ -141,4 +197,4 @@ class Notebook extends React.Component {
 
 }
 
-export default Notebook;
+export default withAuth0(Notebook);

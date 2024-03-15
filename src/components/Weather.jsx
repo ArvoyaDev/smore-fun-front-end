@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import chatGPTLogo from '../../public/assests/SVG/chatGPT.svg'
 import WeatherDay from "./WeatherDay.jsx";
 
 
@@ -24,7 +25,7 @@ class Weather extends React.Component  {
 							<p key={index}>{line}</p>
 						))}
 					</section>
-						<img className='chatGPT-logo' src='../../public/assests/SVG/chatGPT.svg' alt='chatGPT logo also saying "powered by OpenAI"'/>
+						<img className='chatGPT-logo' src={chatGPTLogo} alt='chatGPT logo also saying "powered by OpenAI"'/>
 				</div>
 			);
 		}

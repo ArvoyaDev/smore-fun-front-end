@@ -4,7 +4,6 @@ import Weather from "./Weather.jsx";
 import StateParks from './StateParks.jsx';
 import Alerts from './Alerts.jsx';
 import { Spinner } from 'react-bootstrap';
-import { withAuth0 } from '@auth0/auth0-react';
 
 
 const backendServer = import.meta.env.VITE_APP_BACKEND_URL
@@ -45,11 +44,6 @@ class Search extends React.Component {
 		};
 	}
 
-	getToken = () => {
-		return this.props.auth0.getIdTokenClaims()
-		.then(res => res.__raw)
-		.catch(err => console.err(err))
-	}
 
 	handleChange = (event) => {
 		let city = event.target.value.toLowerCase();
@@ -60,12 +54,6 @@ class Search extends React.Component {
 
 	handleSubmit = async (event) => {
 		event.preventDefault();
-		const token = await this.getToken();
-		const config = {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		};
 
 		this.loadingInterval = setInterval(() => {
 			if (this.state.loadingMessagesCopy.length === 0) {
@@ -86,7 +74,7 @@ class Search extends React.Component {
 		});
 
 		try {
-			const response = await axios.get(`${backendServer}/api/city-info?city=${this.state.city}`, config);
+			const response = await axios.get(`${backendServer}/api/city-info?city=${this.state.city}`);
 			this.setState({
 				weather: response.data.weather,
 				campsites: response.data.campsites,
@@ -142,9 +130,9 @@ class Search extends React.Component {
 						{this.state.weather && <Weather chatGPT={this.state.chatGPT} forecast={this.state.weather}/>}
 					</div>
 					{this.state.error && <div className='error-message'>Error: {this.state.error}</div>}
-					<div className='alertsBoard'>
-						{this.state.alerts && <Alerts alerts={this.state.alerts}/>}
-					</div>
+				<div className='alertsBoard'>
+					{this.state.alerts && <Alerts alerts={this.state.alerts}/>}
+				</div>
 				</div>
 				{this.state.campsites && <StateParks city={this.state.city} campsites={this.state.campsites}/>}
 			</div>
@@ -152,4 +140,4 @@ class Search extends React.Component {
 	}
 }
 
-export default  withAuth0(Search);
+export default  Search;

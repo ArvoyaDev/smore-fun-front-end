@@ -9,7 +9,6 @@ class Weather extends React.Component  {
 	render() {
 
 		if (this.props.forecast) {
-
 			return (
 				<div className={'weatherHolder'}>
 					<h1 className='weather-header'>Weather & Camping Tips</h1>

@@ -24,7 +24,7 @@ function App({ auth0 }) {
                     <Routes>
                          <Route
                               exact path='/'
-                              element={isAuthenticated ?<Search className='search' /> : <Welcome/>}
+                              element={<Search className='search' />}
                          />
                          <Route
                               exact path='/notebook'

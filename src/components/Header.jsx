@@ -6,6 +6,8 @@ import { withAuth0 } from "@auth0/auth0-react";
 import Login from "./Login.jsx";
 import Logout from "./Logout.jsx";
 
+
+
 class Header extends React.Component {
 	state = {
 		showOffcanvas: false,
@@ -43,14 +45,14 @@ class Header extends React.Component {
 								<>
 									<div className='nav-bar'>
 											<div className='nav-buttons-background'>
-												<Link className='nav-buttons' to="/" >Home</Link>
+												<Link onClick={this.handleToggleOffcanvas} className='nav-buttons' to="/" >Home</Link>
 											</div>
 											<div className='nav-buttons-background' >
-												<Link className='nav-buttons' to="/Notebook" >Notebook</Link>
+												<Link onClick={this.handleToggleOffcanvas} className='nav-buttons' to="/Notebook" >Notebook</Link>
 											</div>
 									</div>
 									<div className='login-bar'>
-											{isAuthenticated ?<Link className='nav-buttons' to='/profile'>Profile</Link> : null}
+											{isAuthenticated ?<Link onClick={this.handleToggleOffcanvas} className='nav-buttons' to='/profile'>Profile</Link> : null}
 											{isAuthenticated ? <Logout/> : <Login/>}
 									</div>
 								</>

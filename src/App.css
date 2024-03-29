@@ -193,7 +193,7 @@ Body {
     }
     .header {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         position: relative;
     }
 }
@@ -289,6 +289,10 @@ Body {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .header {
+        display: flex;
+        justify-content: center;
     }
 
     .nav-bar{

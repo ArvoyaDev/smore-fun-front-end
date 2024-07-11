@@ -1,6 +1,10 @@
 # S'more Fun
 
-Deployed Site: [S'more Fun](https://smore-fun.herokuapp.com/)
+Deployed Site: [S'more Fun](https://smore-fun.netlify.app/)
+
+Backend Repoo: [Backend](https://github.com/ArvoyaDev/smore-fun-back-end)
+
+Mobile App Repo: [Mobile App](https://github.com/ArvoyaDev/smore-fun-mobile)
 
 Trello - [Link](https://smore-fun.netlify.app/)
 
